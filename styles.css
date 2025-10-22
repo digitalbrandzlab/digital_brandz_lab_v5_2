@@ -1,0 +1,156 @@
+:root{
+  --bg: #05090c;
+  --silver1: #cfd8e3;
+  --silver2: #9aa7b3;
+  --silver3: #65717b;
+  --glass: rgba(255,255,255,0.06);
+  --neon: #dff3f6;
+  --muted: #b7c3c8;
+  --radius: 16px;
+  --maxw: 1200px;
+  --gap: 22px;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+}
+*{ box-sizing: border-box }
+html,body{ height:100% }
+body{
+  margin:0; color:#eaf4fa;
+  background: radial-gradient(1200px 800px at 20% 10%, rgba(200,230,250,.08), transparent 18%), var(--bg);
+  overflow-x:hidden; scroll-behavior:smooth;
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+}
+
+/* Header */
+.site-header{
+  position:sticky; top:0; z-index:30; display:flex; align-items:center; gap:var(--gap);
+  padding:12px 18px;
+  background: linear-gradient(180deg, rgba(10,15,18,.72), rgba(10,15,18,.28) 60%, transparent);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  backdrop-filter: blur(6px) saturate(115%);
+}
+.brand{ display:flex; align-items:center; gap:12px }
+.logo-top{
+  width: clamp(160px, 24vw, 260px);
+  border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(0,0,0,.6);
+  transition: filter .4s ease;
+  /* fade-out via CSS var set in JS */
+  opacity: var(--logoOpacity, 1);
+}
+/* Chrome shimmer once */
+.shimmer-once{
+  position: relative; overflow: hidden; isolation:isolate;
+  --shine: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.9) 30%, transparent 60%);
+  -webkit-mask-image: var(--mask, none);
+  mask-image: var(--mask, none);
+}
+.shimmer-once::after{
+  content:""; position:absolute; inset:0;
+  background: var(--shine);
+  transform: translateX(-120%);
+  animation: sweep 1.8s ease 0.3s 1 forwards;
+  opacity:.35;
+}
+@keyframes sweep{
+  0%{ transform: translateX(-120%) }
+  100%{ transform: translateX(120%) }
+}
+
+.nav{ display:flex; gap:10px; flex-wrap:wrap }
+.nav a{
+  color: var(--muted); text-decoration:none; padding:8px 10px; border-radius:10px;
+  border: 1px solid rgba(255,255,255,.06);
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+}
+.nav a.active, .nav a:hover{ color: var(--neon); border-color: rgba(223,243,246,.35) }
+.header-actions{ margin-left:auto; display:flex; align-items:center; gap:8px }
+.icon-btn{
+  border:1px solid rgba(255,255,255,.12); background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+  color:#eaf4fa; padding:8px 10px; border-radius:10px; cursor:pointer;
+}
+.cta{
+  background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.08));
+  border:1px solid rgba(255,255,255,.22);
+  color: var(--neon); padding:8px 12px; border-radius:12px; cursor:pointer; font-weight:700;
+}
+.mobile-toggle{ display:none }
+
+/* Hero */
+.section{ padding:64px 16px; max-width:var(--maxw); margin:0 auto }
+.hero{ position:relative; min-height:92vh; display:grid; place-items:center }
+.hero-bg{ position:absolute; inset:0; z-index:-1 }
+#starfield{ position:absolute; inset:0 }
+.parallax .p-layer{ position:absolute; inset:-20vh -10vw; background: radial-gradient(600px 300px at 20% 30%, rgba(230,238,245,.10), transparent 40%) }
+.parallax .l2{ transform: translateY(8px); filter: blur(18px); opacity:.55 }
+.parallax .l3{ transform: translateY(16px); filter: blur(34px); opacity:.4 }
+.hero-inner{ text-align:center }
+.headline{ font-size: clamp(28px, 5vw, 60px); margin: 12px 0 6px; letter-spacing: 1px }
+.headline span{
+  background: linear-gradient(180deg, var(--silver1), var(--silver2));
+  -webkit-background-clip:text; background-clip:text; color: transparent;
+  text-shadow: 0 0 10px rgba(200,230,250,.12);
+}
+.sub{ color:var(--muted); margin:0 0 18px }
+.hero-actions{ display:flex; gap:12px; justify-content:center }
+.btn{ display:inline-block; padding:10px 16px; border-radius:12px; text-decoration:none; font-weight:700 }
+.btn.primary{
+  border:1px solid rgba(255,255,255,.22);
+  background: linear-gradient(180deg, rgba(205,220,232,.18), rgba(120,140,160,.10));
+  color:#eaf4fa;
+}
+.btn.ghost{ border:1px solid rgba(255,255,255,.10); color: var(--muted);
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+}
+
+/* Sections */
+.section.dark{ background: linear-gradient(180deg, rgba(255,255,255,.02), transparent); border-radius:16px; box-shadow:0 10px 40px rgba(0,0,0,.6) }
+.grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:18px }
+.card.glass{
+  background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:16px; padding:16px;
+  box-shadow: 0 10px 34px rgba(0,0,0,.6), inset 0 0 20px rgba(200,230,250,.05);
+}
+
+/* Packages */
+.packages{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:18px }
+.pkg.popular{ border:1px solid rgba(223,243,246,.28) }
+.price.big{ font-size:32px; color:#fff }
+
+/* About */
+.about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:18px }
+
+/* Contact */
+.contact-grid{ display:grid; grid-template-columns:2fr 1fr; gap:18px }
+#contactForm label{ display:block; margin-bottom:10px; font-size:14px; color:var(--muted) }
+#contactForm input, #contactForm textarea, #contactForm select{
+  width:100%; padding:10px; border-radius:10px; border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03); color:inherit;
+}
+.quote-line{ margin:6px 0 12px; color:var(--muted) }
+.bullets{ margin:8px 0 0 18px } .bullets li{ margin:6px 0 }
+
+/* Modal */
+.modal{ position:fixed; inset:0; display:none; place-items:center; background: rgba(0,0,0,.5); z-index:30 }
+.modal.show{ display:grid }
+.modal .modal-content{ max-width:680px; position:relative }
+.modal .close{ position:absolute; right:14px; top:8px; border:0; background:transparent; color:#fff; font-size:24px; cursor:pointer }
+
+/* Footer */
+.site-footer{ display:flex; justify-content:space-between; align-items:center; gap:12px; padding:14px 20px; border-top:1px solid rgba(255,255,255,.08); background: linear-gradient(0deg, rgba(0,0,0,.7), rgba(0,0,0,.2)) }
+.floating-cta{
+  padding:12px 16px; border-radius:999px; border:1px solid rgba(255,255,255,.22);
+  background: linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.08));
+  color:#eaf4fa; font-weight:700; box-shadow: 0 10px 30px rgba(0,0,0,.6); cursor:pointer
+}
+
+/* Responsive */
+@media(max-width:900px){
+  .nav{ display:none } .mobile-toggle{ display:block }
+  .contact-grid{ grid-template-columns:1fr }
+  .about-grid{ grid-template-columns:1fr }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .parallax .p-layer{ display:none }
+}

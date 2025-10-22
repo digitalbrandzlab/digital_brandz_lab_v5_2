@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Digital Brandz Lab — v5.2 Silver Eclipse</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+  <!-- Particle intro from earlier versions kept minimal; logo shimmer carries the entrance -->
+  <header class="site-header">
+    <div class="brand">
+      <img src="assets/logo.jpg" alt="Digital Brandz Lab" class="logo-top shimmer-once" id="topLogo"/>
+    </div>
+    <nav class="nav" id="mainNav">
+      <a href="#home" data-target="home" class="active">Home</a>
+      <a href="#portfolio" data-target="portfolio">Portfolio</a>
+      <a href="#about" data-target="about">About</a>
+      <a href="#services" data-target="services">Services</a>
+      <a href="#packages" data-target="packages">Packages</a>
+      <a href="#contact" data-target="contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="soundToggle" aria-label="Toggle ambient sound">🔊</button>
+      <button class="cta" id="hireTop">Hire Me</button>
+      <button class="mobile-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="section hero">
+    <div class="hero-bg" aria-hidden="true">
+      <canvas id="starfield"></canvas>
+      <div class="parallax">
+        <div class="p-layer l1"></div>
+        <div class="p-layer l2"></div>
+        <div class="p-layer l3"></div>
+      </div>
+    </div>
+    <div class="hero-inner">
+      <h1 class="headline"><span>Build.</span> <span>Launch.</span> <span>Scale.</span></h1>
+      <p class="sub">A creative spaceship for code, apps, and branding — crafted to sell itself.</p>
+      <div class="hero-actions">
+        <a class="btn primary" data-goto="portfolio">Enter the Lab</a>
+        <a class="btn ghost" data-goto="services">See Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section id="portfolio" class="section">
+    <h2>Portfolio</h2>
+    <div class="grid portfolio">
+      <article class="card glass port">
+        <header>Arcade Launch</header>
+        <p>Realtime web game + leaderboard</p>
+        <button class="btn tiny" data-story="Arcade Launch|Built a fast canvas game with social share and scoreboards.">Read Story</button>
+      </article>
+      <article class="card glass port">
+        <header>TableFlow</header>
+        <p>Restaurant ordering that feels like magic</p>
+        <button class="btn tiny" data-story="TableFlow|Reduced checkout friction by 42% with delightful motion and defaults.">Read Story</button>
+      </article>
+      <article class="card glass port">
+        <header>RidePulse</header>
+        <p>Taxi dispatch + driver app</p>
+        <button class="btn tiny" data-story="RidePulse|Live maps, realtime updates, Stripe flows tuned for trust.">Read Story</button>
+      </article>
+      <article class="card glass port">
+        <header>Creator Kits</header>
+        <p>Logo families + motion marks</p>
+        <button class="btn tiny" data-story="Creator Kits|Brand systems designed to scale across platforms.">Read Story</button>
+      </article>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section dark">
+    <h2>About</h2>
+    <div class="about-grid">
+      <div class="card glass">
+        <h3>Why Digital Brandz Lab?</h3>
+        <p>Presentation is everything. We combine motion, clarity, and conversion psychology so your brand explains itself and motivates action.</p>
+        <ul class="bullets">
+          <li>Motion that guides attention</li>
+          <li>Copy that is simple, bold, and human</li>
+          <li>Flows that convert visitors into clients</li>
+        </ul>
+      </div>
+      <div class="card glass">
+        <h3>Capabilities</h3>
+        <ul class="bullets">
+          <li>Websites & Apps (Games too)</li>
+          <li>Logo & Branding Systems</li>
+          <li>Marketing + Analytics + SEO</li>
+          <li>APIs: Stripe, bookings, maps, realtime</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="section">
+    <h2>Services</h2>
+    <div class="grid services">
+      <div class="card glass">
+        <h3>Logo & Branding</h3>
+        <p>Custom logos, rebrands, and motion marks.</p>
+        <div class="price">From $299</div>
+        <button class="btn purchase" data-plan="logo">Hire</button>
+      </div>
+      <div class="card glass">
+        <h3>Website Development</h3>
+        <p>Modern responsive sites — fast and accessible.</p>
+        <div class="price">$100 / page</div>
+        <button class="btn purchase" data-plan="web">Hire</button>
+      </div>
+      <div class="card glass">
+        <h3>App & Game Dev</h3>
+        <p>From prototypes to production.</p>
+        <div class="price">From $2,000</div>
+        <button class="btn purchase" data-plan="app">Hire</button>
+      </div>
+      <div class="card glass">
+        <h3>Marketing & SEO</h3>
+        <p>Funnels, analytics, on-page SEO.</p>
+        <div class="price">From $399</div>
+        <button class="btn purchase" data-plan="marketing">Hire</button>
+      </div>
+      <div class="card glass">
+        <h3>Integrations</h3>
+        <p>Stripe, bookings, delivery APIs, realtime.</p>
+        <div class="price">Custom</div>
+        <button class="btn purchase" data-plan="integrations">Hire</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Packages -->
+  <section id="packages" class="section">
+    <h2>Packages</h2>
+    <div class="packages">
+      <div class="pkg glass">
+        <h3>Starter</h3>
+        <p>Up to 5 pages • Basic SEO • ~1 week</p>
+        <div class="price big">$499</div>
+        <button class="btn purchase" data-plan="starter">Choose</button>
+      </div>
+      <div class="pkg glass popular">
+        <h3>Growth</h3>
+        <p>Up to 10 pages • CMS-ready • ~2–3 weeks</p>
+        <div class="price big">$1,499</div>
+        <button class="btn purchase" data-plan="growth">Choose</button>
+      </div>
+      <div class="pkg glass">
+        <h3>Enterprise</h3>
+        <p>Apps, integrations, SLA • 4+ weeks • Custom scope</p>
+        <div class="price big">$4,999+</div>
+        <button class="btn purchase" data-plan="enterprise">Choose</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section dark">
+    <h2>Contact</h2>
+    <div class="contact-grid">
+      <form id="contactForm" onsubmit="return false;" class="card glass">
+        <label>Name <input type="text" id="name" required /></label>
+        <label>Email <input type="email" id="email" required /></label>
+        <label>Service 
+          <select id="service">
+            <option value="logo">Logo & Branding</option>
+            <option value="web">Website Development</option>
+            <option value="app">App / Game Development</option>
+            <option value="marketing">Marketing & SEO</option>
+            <option value="integrations">Integrations</option>
+          </select>
+        </label>
+        <label>Pages (websites) <input type="number" id="pages" min="1" placeholder="e.g. 5" /></label>
+        <div class="quote-line">Estimated: <span id="quote">$0</span> USD</div>
+        <label>Project <textarea id="msg" rows="4" required></textarea></label>
+        <button class="btn primary" id="sendBtn">Send</button>
+      </form>
+      <div class="card glass info">
+        <h3>Digital Brandz Lab</h3>
+        <p>Neon-tech craft that sells your story.</p>
+        <ul class="bullets">
+          <li>Motion that motivates</li>
+          <li>Design that explains itself</li>
+          <li>Flows that close sales</li>
+        </ul>
+        <p><strong>Stripe-Ready:</strong> Checkout on packages. Replace keys in <code>server.js</code>.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div>© <span id="year"></span> Digital Brandz Lab™ </div>
+    <button class="floating-cta" id="floatingHire">Hire Me</button>
+  </footer>
+
+  <!-- Story modal -->
+  <div id="storyModal" class="modal" aria-hidden="true">
+    <div class="modal-content glass">
+      <button class="close" id="closeModal" aria-label="Close">×</button>
+      <h3 id="storyTitle"></h3>
+      <p id="storyBody"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
